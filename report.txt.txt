@@ -1,0 +1,56 @@
+First I downloaded the zip file git-task2 from moodle and extracted the files to desktop .
+ Here I used 
+      cd c
+      cd users
+      cd user
+      cd desktop
+      cd git-task2
+to access the files / directories
+
+Now , to trace the commit where the creds.env is added , I used
+
+      git log --name-status
+Then I created a new branch named erase from the prevous commit of which creds.env was added using the command
+      
+      git checkout -b erase <hash of the previous commit>
+ 
+to restore the files from the commit where creds.env was added , i used
+    
+      git restore --source=<hash of the commit>
+
+and now i created a commit .gitignore using
+
+      touch .gitignore
+then i went back to desktop and opened the folder git-task2 and then opened the file .gitignore and typed " *creds.env"
+
+then back to ubuntu
+I added the files README.md and .gitignore to the staging area using 
+
+       git add README.md .gitignore
+ then commited the files using the msg ignore
+  
+       git commit -m "ignore"
+
+and then checked the status using 
+
+       git log --name-status
+
+then i switched to the branch master using
+       
+       git checkout master
+ 
+and checked for the status .
+then switched to the branch erase
+and checked for the status
+then I rebased the head 
+ 
+       git rebase --onto <hash of current head> <hash of commit X>
+
+ and the finally to remove the dangling branch  I used
+       
+       git reflog expire --expire-unreachable=now --all
+       git gc --prune=now
+
+
+
+
